@@ -2,7 +2,31 @@
   "dependencies": {
     "@create-figma-plugin/ui": "^4.0.1",
     "@create-figma-plugin/utilities": "^4.0.1",
-    "preact": ">=10"
+    "ahooks": "^3.8.1",
+    "axios": "^1.7.7",
+    "chroma-js": "^3.1.2",
+    "classnames": "^2.5.1",
+    "crypto-js": "^4.2.0",
+    "cryptr": "^6.3.0",
+    "d3": "^7.9.0",
+    "devtools-detect": "^4.0.2",
+    "fabric": "^6.5.3",
+    "jotai": "^2.10.2",
+    "lodash-es": "^4.17.21",
+    "pica": "^9.0.1",
+    "preact": ">=10",
+    "rc-segmented": "^2.7.0",
+    "react": "npm:@preact/compat@^18.3.1",
+    "react-dom": "npm:@preact/compat@^18.3.1",
+    "react-infinite-scroller": "^1.2.6",
+    "react-intl": "^7.1.11",
+    "react-slick": "^0.30.3",
+    "react-svg": "^16.3.0",
+    "segmented-control": "^0.2.1",
+    "sharp": "^0.33.5",
+    "slick-carousel": "^1.8.1",
+    "stackblur-canvas": "^2.7.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@create-figma-plugin/build": "^4.0.1",
@@ -18,8 +42,8 @@
     "editorType": [
       "figma"
     ],
-    "id": "preact-rectangles",
-    "name": "Preact Rectangles",
+    "id": "text-effect-studio",
+    "name": "Text Effect Studio",
     "main": "src/main.ts",
     "ui": "src/ui.tsx"
   }
