@@ -19,10 +19,31 @@ import { useCallback, useState, useEffect } from 'preact/hooks'
 import styles from "./App.css"
 import IndexPage from './pages/index-page/index'
 import PremiumPage from './pages/premium'
+import HomePage from './pages/home'
 import { useGetUserInfo } from './use-get-userinfo'
 
 import { CloseHandler, CreateRectanglesHandler } from './types'
 import { userInfoService } from './services/user-info-service'
+
+import fontsConfig from './fonts.json'
+import pica from 'pica'
+import Potrace from './editor-utils/potrace'
+const StackBlur = require('stackblur-canvas');
+import { recommendedFonts as localRecommendedFonts } from './constants'
+
+
+function init() {
+  window.pica = pica
+  window.Potrace = Potrace
+  window.StackBlur = StackBlur
+}
+
+init()
+
+const localFonts = fontsConfig.fonts
+
+  ; (window as any).AllFonts = localFonts
+; (window as any).RECOMMENDED_FONTS = localRecommendedFonts
 
 function Plugin() {
   const [count, setCount] = useState(false)
@@ -123,7 +144,7 @@ function Plugin() {
       }}>
       <IndexPage />
       {/* <GlobalMessage /> */}
-      {/* <HomePage /> */}
+      <HomePage />
       {/* <FontSettingPage /> */}
       <PremiumPage />
     </div>

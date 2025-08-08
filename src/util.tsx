@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "preact/compat"
 import { emit } from '@create-figma-plugin/utilities'
 
 // 声明 window 上的 fontCache 属性，避免 TS 报错
