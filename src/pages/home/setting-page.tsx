@@ -4,6 +4,7 @@ import { useSetState } from 'ahooks'
 import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
 import { generate } from 'src/services'
+import { emit } from '@create-figma-plugin/utilities'
 // import MarketingInfo from 'src/components/marketing-info'
 import Payment from 'src/components/payment'
 import Back from 'src/components/back'
@@ -30,59 +31,76 @@ function HomePage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const editorRef = useRef<TextEditor | null>(null)
 
-  async function handleAddToDesign() {
+    async function handleAddToDesign() {
+    console.log('开始添加到设计')
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) {
+      console.error('Canvas 元素不存在')
+      return
+    }
+
     setState({
       isLoading: true
     })
-    let sizeOptions = setting.exportSizeOptions.find(item => item.value === setting.exportSize)
-    if (!sizeOptions) {
-      sizeOptions = setting.exportSizeOptions[0]
-    }
-    // 重新绘制文本效果
-    if (editorRef.current) {
-      editorRef.current.config.font.size = sizeOptions.fontSize
-      await editorRef.current.draw({
-        isPostTreatment: true,
-        isBestQuality: true,
-        maxWidth: sizeOptions.maxHeight,
-        maxHeight: sizeOptions.maxHeight
-      })
-    }
-
-    const blob = await new Promise((resolve) => {
-      canvas.toBlob((blob) => {
-        resolve(blob)
-      }, 'image/png', 1.0)
-    })
 
     try {
-      const data = await generate({
-        id: setting.currentConfigId,
-        userId: setting.userId,
-        quality: setting.exportSize
-      })
-      if (data.marketingInfo) {
-        setSetting((s) => ({
-          ...s,
-          marketingInfo: data.marketingInfo
-        }))
+      let sizeOptions = setting.exportSizeOptions.find(item => item.value === setting.exportSize)
+      if (!sizeOptions) {
+        sizeOptions = setting.exportSizeOptions[0]
       }
-    } catch (error) {
-      console.log('error', error)
-    }
-    try {
-      setting.addOnUISdk.app.document.addImage(blob as Blob, {
-        title: 'Text Effect Image',
-        author: 'Text Effect Studio',
+
+      // 重新绘制文本效果
+      if (editorRef.current) {
+        editorRef.current.config.font.size = sizeOptions.fontSize
+        await editorRef.current.draw({
+          isPostTreatment: true,
+          isBestQuality: true,
+          maxWidth: sizeOptions.maxHeight,
+          maxHeight: sizeOptions.maxHeight
+        })
+      }
+
+      // 将 Canvas 转换为 Blob
+      const blob = await new Promise<Blob>((resolve) => {
+        canvas.toBlob((blob) => {
+          resolve(blob!)
+        }, 'image/png', 1.0)
       })
+
+      // 将 Blob 转换为 Uint8Array
+      const arrayBuffer = await blob.arrayBuffer()
+      const imageData = new Uint8Array(arrayBuffer)
+      console.log('图片数据转换完成，大小:', imageData.length, 'bytes')
+
+      // 通过消息传递将图片数据发送到主线程
+      console.log('发送图片数据到主线程')
+      emit('ADD_IMAGE_TO_DESIGN', imageData)
+
+      // 尝试获取营销信息（保持现有逻辑）
+      try {
+        const data = await generate({
+          id: setting.currentConfigId,
+          userId: setting.userId,
+          quality: setting.exportSize
+        })
+        if (data.marketingInfo) {
+          setSetting((s: SettingType) => ({
+            ...s,
+            marketingInfo: data.marketingInfo
+          }))
+        }
+      } catch (error) {
+        console.log('获取营销信息时出错:', error)
+      }
+
     } catch (error) {
-      console.log('error', error)
+      console.error('添加到设计时出错:', error)
+      // 这里可以添加用户友好的错误提示
+    } finally {
+      setState({
+        isLoading: false
+      })
     }
-    setState({
-      isLoading: false
-    })
   }
 
   useEffect(() => {
@@ -165,12 +183,12 @@ function HomePage() {
   const handleBack = () => {
     const subPages = ['filling', 'outline', 'shadow', '3d', 'jiggle']
     if (subPages.includes(setting.subPage)) {
-      setSetting(prev => ({
+      setSetting((prev: SettingType) => ({
         ...prev,
         subPage: 'text'
       }))
     } else {
-      setSetting(prev => ({
+      setSetting((prev: SettingType) => ({
         ...prev,
         marketingInfo: {},
         page: 'index',
@@ -178,7 +196,7 @@ function HomePage() {
       }))
     }
   }
-  debugger;
+  debugger
 
   return (
     <div style={{
@@ -243,6 +261,12 @@ function HomePage() {
             </div>
             <Button
               fullWidth
+              style={{
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: 'bold',
+                height: '32px'
+              }}
               onClick={handleAddToDesign}>Add to design</Button>
             <Payment
               hideUpgradeButton={!setting.showUpgradeButton}

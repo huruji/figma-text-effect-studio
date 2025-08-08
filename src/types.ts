@@ -29,3 +29,9 @@ export interface FigmaUserInfo {
   photoUrl?: string
   sessionId?: string
 }
+
+// 新增：添加图片到设计的处理器
+export interface AddImageToDesignHandler extends EventHandler {
+  name: 'ADD_IMAGE_TO_DESIGN'
+  handler: (imageData: Uint8Array) => void
+}
