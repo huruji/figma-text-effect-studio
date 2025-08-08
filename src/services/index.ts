@@ -30,6 +30,24 @@ const getDefaultConfig = (): AxiosRequestConfig => {
 // 导出所有服务
 export { userInfoService } from './user-info-service'
 
+export async function getUserInfo({
+  axiosConfig,
+  userId
+}: {
+  axiosConfig?: AxiosRequestConfig
+  userId: string
+}) {
+  const url = `${window.GlobalBaseUrl || BASE_URL}/figma-text-effect-studio/user-info`
+  const res = await axios.post(url, {
+    userId
+  }, {
+    ...axiosConfig || {}
+  })
+  // console.log('res: ', res)
+  const data = res.data
+  return data.data
+}
+
 export async function generate({
   id,
   axiosConfig,

@@ -1,0 +1,54 @@
+import { Button } from '@create-figma-plugin/ui'
+import { h } from 'preact'
+
+type IProps = {
+  onCancel(): void
+  title: string
+}
+
+const Back = ({
+  onCancel,
+  title
+}: IProps) => {
+  return (
+    <div style={{
+      padding: '16px',
+      display: 'flex',
+      alignItems: 'center',
+      // justifyContent: 'space-between'
+    }}>
+      <Button
+        secondary
+        onClick={onCancel}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '4px',
+          padding: '4px 8px',
+          cursor: 'pointer'
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          style={{ flexShrink: 0 }}
+        >
+          <path
+            fill="currentColor"
+            d="M6.9 10.996h11.596a.75.75 0 0 1 0 1.5H6.9l4.377 4.377a.75.75 0 0 1-1.061 1.06l-4.95-4.95a1.75 1.75 0 0 1 0-2.474l4.95-4.95a.75.75 0 1 1 1.06 1.06L6.9 10.996z"
+          />
+        </svg>
+      </Button>
+      <div style={{
+        paddingLeft: '16px',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        color: 'var(--figma-color-text-primary)'
+      }}>{title}</div>
+    </div>
+  )
+}
+
+export default Back

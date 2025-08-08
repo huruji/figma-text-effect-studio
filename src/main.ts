@@ -2,6 +2,12 @@ import { once, showUI, emit } from '@create-figma-plugin/utilities'
 
 import { CloseHandler, CreateRectanglesHandler, RequestUserInfoHandler, FigmaUserInfo } from './types'
 
+// 添加打开链接的消息处理器类型
+interface OpenUrlHandler {
+  name: 'OPEN_URL'
+  handler: (url: string) => void
+}
+
 export default function () {
   once<CreateRectanglesHandler>('CREATE_RECTANGLES', function (count: number) {
     const nodes: Array<SceneNode> = []
@@ -38,6 +44,12 @@ export default function () {
 
     // 使用 emit 发送用户信息到UI线程
     emit('USER_INFO', userInfo)
+  })
+
+  // 处理打开链接的请求
+  once<OpenUrlHandler>('OPEN_URL', function (url: string) {
+    // 使用 figma.openExternal 在浏览器中打开链接
+    ;(figma as any).openExternal(url)
   })
 
   console.log('当前用户信息:', figma.currentUser)

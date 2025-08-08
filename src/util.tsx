@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { emit } from '@create-figma-plugin/utilities'
 
 // 声明 window 上的 fontCache 属性，避免 TS 报错
 declare global {
@@ -193,4 +194,12 @@ export const prehandlePathSample = (pathSample: {
   url: string
 }[]) => {
   return pathSample
+}
+
+/**
+ * 在 Figma Plugin 中打开外部链接
+ * @param url 要打开的链接
+ */
+export const openExternalUrl = (url: string) => {
+  emit('OPEN_URL', url)
 }

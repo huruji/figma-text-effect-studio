@@ -1,28 +1,39 @@
-import { useEffect } from "react"
+import { useEffect } from "preact/compat"
 import { useAtom } from 'jotai'
 import { useDocumentVisibility } from 'ahooks'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
 import { getUserInfo } from 'src/services'
-import { AddOnSDKAPI } from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-
+import { userInfoService } from './services/user-info-service'
+import { emit } from '@create-figma-plugin/utilities'
 
 export const useGetUserInfo = ({
   needInit = true,
   listenVisibility = true,
-  addOnUISdk
 }: {
   needInit?: boolean
   listenVisibility?: boolean
-  addOnUISdk: AddOnSDKAPI
 }) => {
   const [setting, setSetting] = useAtom(settingAtom)
-  const documentVisibility = useDocumentVisibility();
+  const documentVisibility = useDocumentVisibility()
 
   const getInfo = async () => {
     try {
-      const userId = await addOnUISdk.app.currentUser.userId();
+      let userInfo = userInfoService.getUserInfoFromStorage()
+      debugger
+      if (!userInfo) {
+        // 如果没有缓存，请求新的用户信息
+        emit('REQUEST_USER_INFO')
+
+        // 简单轮询检查用户信息是否已接收并存储
+        userInfo = await new Promise(resolve => {
+          setInterval(() => {
+            const currentUserInfo = userInfoService.getCurrentUserInfo()
+            resolve(currentUserInfo)
+          }, 200)
+        })
+      }
       const res = await getUserInfo({
-        userId
+        userId: userInfo?.id || ''
       })
       const newSetting: Partial<SettingType> = {}
       if (res.credits !== undefined) {
@@ -76,7 +87,7 @@ export const useGetUserInfo = ({
     }
   }, [needInit])
   useEffect(() => {
-    if (!listenVisibility) return;
+    if (!listenVisibility) return
     if (documentVisibility === 'visible') {
       // 如果 checkoutUrl 不存在，则获取用户信息
       if (!setting.checkoutUrl) {

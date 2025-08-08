@@ -1,0 +1,13 @@
+{
+  "api": "1.0.0",
+  "editorType": [
+    "figma"
+  ],
+  "id": "text-effect-studio",
+  "name": "Text Effect Studio",
+  "main": "build/main.js",
+  "ui": "build/ui.js",
+  "permissions": [
+    "currentuser"
+  ]
+}

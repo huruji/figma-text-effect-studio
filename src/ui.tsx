@@ -17,6 +17,9 @@ import { h } from 'preact'
 import { useSetState } from 'ahooks'
 import { useCallback, useState, useEffect } from 'preact/hooks'
 import styles from "./App.css"
+import IndexPage from './pages/index-page/index'
+import PremiumPage from './pages/premium'
+import { useGetUserInfo } from './use-get-userinfo'
 
 import { CloseHandler, CreateRectanglesHandler } from './types'
 import { userInfoService } from './services/user-info-service'
@@ -29,6 +32,11 @@ function Plugin() {
     loading: boolean
   }>({
     loading: true,
+  })
+
+  useGetUserInfo({
+    needInit: true,
+    listenVisibility: true,
   })
 
   // 初始化用户信息
@@ -107,26 +115,17 @@ function Plugin() {
   }
 
   return (
-    <div>
-      {userInfo && (
-        <div>
-          <Text>欢迎, {userInfo.name}!</Text>
-          <VerticalSpace space="small" />
-          <Muted>用户ID: {userInfo.id}</Muted>
-          <Muted>存储方式: 内存</Muted>
-          {userInfo.photoUrl && (
-            <div style={{ marginTop: '8px' }}>
-              <img
-                src={userInfo.photoUrl}
-                alt="用户头像"
-                style={{ width: '32px', height: '32px', borderRadius: '50%' }}
-              />
-            </div>
-          )}
-          <VerticalSpace space="small" />
-        </div>
-      )}
-      {/* 其他UI内容 */}
+    <div style={{
+      height: '100vh',
+      paddingLeft: '8px',
+      paddingRight: '8px',
+      paddingTop: '8px',
+      }}>
+      <IndexPage />
+      {/* <GlobalMessage /> */}
+      {/* <HomePage /> */}
+      {/* <FontSettingPage /> */}
+      <PremiumPage />
     </div>
   )
 }
