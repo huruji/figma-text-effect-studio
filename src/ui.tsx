@@ -141,6 +141,7 @@ function Plugin() {
       paddingLeft: '8px',
       paddingRight: '8px',
       paddingTop: '8px',
+      backgroundColor: 'var(--figma-color-bg)'
       }}>
       <IndexPage />
       {/* <GlobalMessage /> */}

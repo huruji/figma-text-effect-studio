@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "preact/compat"
-import { Button } from '@create-figma-plugin/ui'
+import { Button, Stack } from '@create-figma-plugin/ui'
 import { useSetState } from 'ahooks'
 import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
@@ -10,7 +10,7 @@ import Payment from 'src/components/payment'
 import Back from 'src/components/back'
 // import { config } from './config'
 import { TextEditor } from 'src/editor'
-// import TextSetting from './subpages/text'
+import TextSetting from './subpages/text'
 // import FillingSetting from './subpages/filling'
 // import OutlineSetting from './subpages/outline'
 // import ShadowSetting from './subpages/shadow'
@@ -204,10 +204,15 @@ function HomePage() {
     }}>
       <div style={{
         width: '100%',
+        marginBottom: '32px'
       }}>
-        <div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px'
+        }}>
           <div style={{
-            backgroundColor: 'var(--spectrum-global-color-static-white)',
+            backgroundColor: 'var(--figma-color-bg)',
             position: 'sticky',
             top: 0,
             zIndex: 100,
@@ -218,14 +223,13 @@ function HomePage() {
 
             <div style={{
               display: "flex",
-              paddingTop: 'var(--ui-kit-space-2)',
               justifyContent: "center",
               alignItems: "center",
               border: "1px solid",
               borderRadius: "3px",
               // borderColor: tokens.colorBorder,
               padding: "10px",
-              backgroundColor: "var(--ui-kit-color-neutral-low)",
+              backgroundColor: "var(--figma-color-bg-secondary)"
             }}>
               <div id="effect-container" style={{
                 width: "calc(100% - 24px)",
@@ -238,19 +242,20 @@ function HomePage() {
               }} />
             </div>
           </div>
-          <div style={{ paddingTop: 'var(--spectrum-global-dimension-size-200)' }}>
-            {/* {setting.subPage === 'text' && <TextSetting />}
-            {setting.subPage === 'filling' && <FillingSetting />}
-            {setting.subPage === 'outline' && <OutlineSetting />}
-            {setting.subPage === 'shadow' && <ShadowSetting />}
-            {setting.subPage === '3d' && <ThreeDSetting />}
-            {setting.subPage === 'jiggle' && <JiggleSetting />} */}
+          <div>
+            {setting.subPage === 'text' && <TextSetting />}
+            {/* {setting.subPage === 'filling' && <FillingSetting />} */}
+            {/* {setting.subPage === 'outline' && <OutlineSetting />} */}
+            {/* {setting.subPage === 'shadow' && <ShadowSetting />} */}
+            {/* {setting.subPage === '3d' && <ThreeDSetting />} */}
+            {/* {setting.subPage === 'jiggle' && <JiggleSetting />} */}
           </div>
           <div style={{
-            paddingTop: 'var(--spectrum-global-dimension-size-200)',
-            // position: "sticky",
-            // bottom: 'var(--spectrum-global-dimension-size-200)',
-            // backgroundColor: "var(--spectrum-global-color-static-white)",
+            paddingBottom: 16,
+            position: "sticky",
+            bottom: 0,
+            zIndex: 100,
+            backgroundColor: 'var(--figma-color-bg)',
           }}>
             <div style={{
               display: 'flex',

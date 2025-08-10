@@ -3,6 +3,7 @@ import { settingAtom, type SettingType } from 'src/atoms/setting'
 import { useAtom } from 'jotai'
 import { h } from 'preact'
 import styles from './index.css'
+import CustomSegmentedControl from 'src/components/custom-segmented-control'
 
 const sizeLabelMap = {
   'basic': 'Basic',
@@ -28,8 +29,7 @@ const SettingQuality = () => {
     }
   })
 
-  const handleChange = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.value
+  const handleChange = (value: string) => {
     const isProValue = setting.exportSizeOptions.find(item => item.value === value)?.isPro
 
     if (isProValue && !setting.userIsPro) {
@@ -41,23 +41,12 @@ const SettingQuality = () => {
 
   return (
     <div style={{ marginBottom: '16px' }}>
-      <div style={{
-        fontSize: '12px',
-        fontWeight: '600',
-        color: 'var(--figma-color-text-secondary)',
-        marginBottom: '8px'
-      }}>
-        Export quality
-      </div>
-      <div className={styles['setting-quality-segmented-control-wrapper']}><SegmentedControl
-        style={{
-          cursor: 'pointer',
-        }}
+      <CustomSegmentedControl
+        name='Export quality'
         options={exportSizeOptions}
         value={setting.exportSize}
         onChange={handleChange}
       />
-      </div>
     </div>
   )
 }

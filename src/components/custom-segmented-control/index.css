@@ -1,0 +1,7 @@
+.setting-segmented-control-wrapper label {
+  flex-grow: 1;
+  cursor: pointer;
+}
+.setting-segmented-control-wrapper label div {
+  cursor: pointer;
+}

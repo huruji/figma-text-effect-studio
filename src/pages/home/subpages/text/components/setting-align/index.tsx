@@ -1,5 +1,4 @@
-
-import { useState } from 'react'
+import { h } from 'preact'
 import { settingAtom } from 'src/atoms/setting'
 import { useAtom } from 'jotai'
 import CustomSegmentedControl from 'src/components/custom-segmented-control'
@@ -9,10 +8,9 @@ const SettingAlign = () => {
 
   return <CustomSegmentedControl
     name='Align'
-    options={[{ label: 'Center', value: 'center' }, { label: 'Left', value: 'left' }, { label: 'Right', value: 'right' }]}
+    options={[{ text: 'Left', value: 'left' }, { text: 'Center', value: 'center' }, { text: 'Right', value: 'right' }]}
     value={setting?.currentConfig?.align || 'center'}
     onChange={(value) => {
-      console.log('align value', value)
       setSetting((s) => ({ ...s, currentConfig: { ...s.currentConfig, align: value } }))
     }}
   />

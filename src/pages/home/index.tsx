@@ -125,7 +125,7 @@ function HomePage() {
       {
         state.loading && (
           <div><div style={{
-            backgroundColor: 'var(--spectrum-global-color-static-white)',
+            backgroundColor: 'var(--figma-color-bg)',
             position: 'sticky',
             top: 0,
             zIndex: 100,

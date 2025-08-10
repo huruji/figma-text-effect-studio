@@ -1,12 +1,13 @@
 import { useAtom } from 'jotai'
-import { Grid, Image, Text } from '@adobe/react-spectrum'
 import { settingAtom } from 'src/atoms/setting'
-import FillingPNG from 'src/assets/imgs/filling.png'
-import OutlinePNG from 'src/assets/imgs/outline.png'
-import ShadowPNG from 'src/assets/imgs/shadow.png'
-import JigglePNG from 'src/assets/imgs/jiggle.png'
-import ThreeDPNG from 'src/assets/imgs/3d.png'
-import './index.css'
+import { h } from 'preact'
+import { Text, Columns } from '@create-figma-plugin/ui'
+const FillingPNG = require('src/assets/imgs/filling.png')
+const OutlinePNG = require('src/assets/imgs/outline.png')
+const ShadowPNG = require('src/assets/imgs/shadow.png')
+const JigglePNG = require('src/assets/imgs/jiggle.png')
+const ThreeDPNG = require('src/assets/imgs/3d.png')
+import styles from './index.css'
 
 type StyleConfigType = {
   src: string
@@ -95,34 +96,50 @@ const IndexPage = () => {
   }
   return (
     <div>
-      <div>
-        <Text>
-          {'Styles'}
-        </Text>
+      <div style={{
+        fontSize: '12px',
+        fontWeight: '600',
+        color: 'var(--figma-color-text-secondary)',
+        marginBottom: '4px'
+      }}>
+        Styles
       </div>
-      <Grid columns={['1fr', '1fr', '1fr']} gap="size-100">
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '8px'
+      }}>
         {stylesConfig.map((item, index) => {
           return <div key={item.subPage} style={{
-            cursor: 'pointer'
+            cursor: 'pointer',
+            width: 'calc((100% - 16px) / 3)',
           }}
-          onClick={() => {
-            setSetting((s) => {
-              return {
-                ...s,
-                subPage: item.subPage
-              }
-            })
-          }}
+            onClick={() => {
+              setSetting((s) => {
+                return {
+                  ...s,
+                  subPage: item.subPage
+                }
+              })
+            }}
           >
-            <div className='style-setting-item'>
-              <Image
-              src={item.src}
-            />
+            <div className={styles['style-setting-item']} >
+              <img
+                style={{
+                  width: '100%',
+                }}
+                src={item.src}
+                alt={item.style}
+              />
             </div>
-            <div style={{ textAlign: 'center' }}><Text>{item.style}</Text></div>
+            <div style={{ textAlign: 'center' }}><div style={{
+              fontSize: '12px',
+              color: 'var(--figma-color-text-secondary)',
+              marginBottom: '8px'
+            }}>{item.style}</div></div>
           </div>
         })}
-      </Grid>
+      </div>
     </div>
   )
 }
