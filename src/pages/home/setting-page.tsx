@@ -16,7 +16,7 @@ import { TextEditor } from 'src/editor'
 // import ShadowSetting from './subpages/shadow'
 // import JiggleSetting from './subpages/jiggle'
 // import ThreeDSetting from './subpages/3d'
-// import SettingQuality from './subpages/text/components/setting-quality'
+import SettingQuality from './subpages/text/components/setting-quality'
 import { h } from 'preact'
 
 function HomePage() {
@@ -257,7 +257,7 @@ function HomePage() {
               flexDirection: 'column',
               marginBottom: 'var(--spectrum-global-dimension-size-200)',
             }}>
-              {/* <SettingQuality /> */}
+              <SettingQuality />
             </div>
             <Button
               fullWidth
