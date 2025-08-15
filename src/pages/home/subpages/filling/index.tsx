@@ -3,7 +3,7 @@
 //   MultilineInput,
 //   FormField,
 // } from "@canva/app-ui-kit"
-import { Flex, Switch, Text } from "@adobe/react-spectrum"
+// import { Flex, Switch, Text } from "@adobe/react-spectrum"
 import { useSetState } from 'ahooks'
 import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
@@ -13,6 +13,7 @@ import SettingColorselectorCom from 'src/components/setting-colorselector-com'
 import SettingGradient, { type Palette } from 'src/components/gradient-setting'
 import { hexToRgb, rgbToHex } from '../../../../color-util'
 import { rgbaToHex } from 'src/shared/utils'
+import { h } from 'preact'
 
 function FillingSetting() {
   const [setting, setSetting] = useAtom(settingAtom)
@@ -48,6 +49,7 @@ function FillingSetting() {
       activePalette = gradientColors[0]
     }
   }
+  console.log('showGradient', showGradient)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spectrum-global-dimension-size-100)' }}>

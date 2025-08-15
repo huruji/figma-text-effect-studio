@@ -24,7 +24,7 @@ const SettingSliderCom = ({
     console.log(newValue)
     setValue(newValue)
   }
-  return <div>
+  return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
     <div style={{
       fontSize: '12px',
       fontWeight: '600',

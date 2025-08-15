@@ -11,7 +11,7 @@ import Back from 'src/components/back'
 // import { config } from './config'
 import { TextEditor } from 'src/editor'
 import TextSetting from './subpages/text'
-// import FillingSetting from './subpages/filling'
+import FillingSetting from './subpages/filling'
 // import OutlineSetting from './subpages/outline'
 // import ShadowSetting from './subpages/shadow'
 // import JiggleSetting from './subpages/jiggle'
@@ -244,7 +244,7 @@ function HomePage() {
           </div>
           <div>
             {setting.subPage === 'text' && <TextSetting />}
-            {/* {setting.subPage === 'filling' && <FillingSetting />} */}
+            {setting.subPage === 'filling' && <FillingSetting />}
             {/* {setting.subPage === 'outline' && <OutlineSetting />} */}
             {/* {setting.subPage === 'shadow' && <ShadowSetting />} */}
             {/* {setting.subPage === '3d' && <ThreeDSetting />} */}
