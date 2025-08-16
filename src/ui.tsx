@@ -131,7 +131,7 @@ function Plugin() {
 
   if (state.loading) {
     return <div className={styles.loadingContainer}>
-      <LoadingIndicator />
+      <LoadingIndicator color="brand"/>
     </div>
   }
 

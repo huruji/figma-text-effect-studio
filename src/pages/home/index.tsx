@@ -139,7 +139,7 @@ function HomePage() {
               alignItems: 'center',
               height: '100%',
             }}>
-             <LoadingIndicator />
+            <LoadingIndicator color="brand"/>
             </div>
           </div>
         )

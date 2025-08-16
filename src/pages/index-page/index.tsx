@@ -189,7 +189,7 @@ const IndexPage = () => {
         )} */}
       </div>
       {state.pageLoading && <div style={{ paddingTop: `var(--spectrum-global-dimension-size-200)`, display: 'flex', justifyContent: 'center' }}>
-        <LoadingIndicator />
+        <LoadingIndicator color="brand"/>
       </div>}
       {!state.pageLoading && state.total === 0 && (
         <Stack space="small">
@@ -205,7 +205,7 @@ const IndexPage = () => {
           threshold={30}
           loadMore={loadMore}
           hasMore={state.hasMore}
-          loader={state.pageLoading ? null : <div style={{ paddingTop: 'var(--spectrum-global-dimension-size-200)', display: 'flex', justifyContent: 'center' }}><LoadingIndicator /></div>}
+          loader={state.pageLoading ? null : <div style={{ paddingTop: 'var(--spectrum-global-dimension-size-200)', display: 'flex', justifyContent: 'center' }}><LoadingIndicator color="brand"/></div>}
           useWindow={false}
           getScrollParent={() => document.getElementById('root')?.querySelector('.index-page')}
         >
