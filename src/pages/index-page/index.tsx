@@ -9,11 +9,8 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { getEffectData } from 'src/services/index'
 import '!./index.css'
 import useSlug from './use-slug'
-import Slider from "react-slick"
-import '!slick-carousel/slick/slick.css'
-import "!slick-carousel/slick/slick-theme.css";
+import HorizontalButtonSlider from 'src/components/horizontal-button-slider'
 import {
-  Button,
   Columns,
   Container,
   Muted,
@@ -165,28 +162,16 @@ const IndexPage = () => {
           <div style={{
             paddingBottom: 'var(--spectrum-global-dimension-size-100)',
           }}>
-            <div className='slider-container'>
-              <Slider {
-                ...{
-                  dots: false,
-                  infinite: false,
-                  speed: 300,
-                  slidesToShow: 3,
-                  slidesToScroll: 3
-                }
-              }>{slugs.map((item) => {
-                const type = setting.searchValue === item.key ? 'accent' : 'secondary'
-                return <div>
-                  <Button UNSAFE_className='cursor-pointer' key={item.key} variant={type} onPress={() => {
-                    setSetting((s: any) => ({
-                      ...s,
-                      searchValue: s.searchValue === item.key ? '' : item.key
-                    }))
-                  }}>{item.label}</Button>
-                </div>
-              })}
-              </Slider>
-            </div>
+            <HorizontalButtonSlider
+              items={slugs}
+              selectedValue={setting.searchValue}
+              onItemSelect={(key) => {
+                setSetting((s: any) => ({
+                  ...s,
+                  searchValue: key
+                }))
+              }}
+            />
           </div>
         )}
       </div>
