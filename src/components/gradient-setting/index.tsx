@@ -81,7 +81,7 @@ const SettingGradient = (props: GradientSettingProps) => {
     }}>
       <div style={{ display: 'flex', alignItems: 'start', flexDirection: 'column', width: '100%', marginBottom: '8px' }}>
         <div >
-          <Text>Tap anywhere on the gradient to add more colors</Text>
+          <Text style={{ fontSize: '10px', color: 'var(--figma-color-text-secondary)' }}>Tap anywhere on the gradient to add more colors</Text>
         </div>
         <div style={{ width: '100%', marginBottom: '16px', marginTop: '8px' }}>
           <div style={{ position: 'relative', height: '24px' }}>

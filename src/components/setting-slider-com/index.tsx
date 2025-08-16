@@ -25,14 +25,14 @@ const SettingSliderCom = ({
     setValue(newValue)
   }
   return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-    <div style={{
+    {text && <div style={{
       fontSize: '12px',
       fontWeight: '600',
       color: 'var(--figma-color-text-secondary)',
       marginBottom: '8px'
     }}>
       {text}
-    </div>
+    </div>}
     <RangeSlider
       minimum={minValue}
       maximum={maxValue}

@@ -27,7 +27,7 @@ const Stops = (props: GradientSettingProps) => {
         {
           palettes.map((palette, index) => {
             return (
-              <div style={{ display: 'flex', flexDirection: 'row', width: '100%', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                   <div>
                     <ColorPickerWrapper
                       color={palette.hexColor}
@@ -57,7 +57,8 @@ const Stops = (props: GradientSettingProps) => {
                   <div style={{
                     display: 'flex',
                     flexGrow: 1,
-                    marginRight: palettes.length > 1 ? 'var(--spectrum-global-dimension-size-50)' : undefined,
+                    marginLeft: '12px',
+                    alignItems: 'center',
                   }}>
                     <SettingSliderCom minValue={0} maxValue={100} value={palette.position} setValue={(val) => {
                       if (val) {
@@ -92,7 +93,11 @@ const Stops = (props: GradientSettingProps) => {
                     }
                   }} /> */}
                   </div>
-                  <div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
                     {palettes.length > 1 && (
                       <Button
                         onClick={() => {
