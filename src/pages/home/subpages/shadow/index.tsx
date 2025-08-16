@@ -1,13 +1,20 @@
-import { Item, TabList, TabPanels, Tabs, } from '@adobe/react-spectrum'
+import { Tabs, TabsOption } from '@create-figma-plugin/ui'
 import { useAtom } from 'jotai'
+import { useSetState } from 'ahooks'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
 import InnerShadow from './innershadow'
 import OuterShadow from './outershadow'
+import { h } from 'preact'
 
 function OutlineSetting() {
   const [setting, setSetting] = useAtom(settingAtom)
   let shouldShowInnerShadow = true
   let shouldShowOuterShadow = true
+  const [state, setState] = useSetState({
+    isLoading: false,
+    activeTabKey: 'inner',
+  })
+
   if (setting?.currentConfig?.shadow?.inner?.editable === 0) {
     shouldShowInnerShadow = false
   }
@@ -21,39 +28,29 @@ function OutlineSetting() {
 
   if (shouldShowInnerShadow && shouldShowOuterShadow) {
 
-    let tabs = [
+    const options: Array<TabsOption> = [
       {
-        id: 1,
-        name: 'Inner shadow',
+        value: 'inner',
         children: <InnerShadow />
       },
       {
-        id: 2,
-        name: 'Outer shadow',
+        value: 'outer',
         children: <OuterShadow />
       },
     ]
 
     return (<Tabs
-    items={tabs}
-    density="regular"
-    isEmphasized={true}
+    options={options}
+    value={state.activeTabKey}
+    onChange={(event) => {
+      const newValue = event.currentTarget.value;
+      setState({
+        activeTabKey: newValue,
+      })
+    }}
   >
-    <TabList>
-      {(item: typeof tabs[0]) => (
-        <Item>
-          {item.name}
-        </Item>
-      )}
-    </TabList>
-    <TabPanels>
-      {(item: typeof tabs[0]) => (
-        <Item>
-          {item.children}
-        </Item>
-      )}
-    </TabPanels>
-  </Tabs>)
+    </Tabs>
+    )
   }
 
   if (shouldShowInnerShadow) {

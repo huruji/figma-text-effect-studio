@@ -12,10 +12,10 @@ import Back from 'src/components/back'
 import { TextEditor } from 'src/editor'
 import TextSetting from './subpages/text'
 import FillingSetting from './subpages/filling'
-// import OutlineSetting from './subpages/outline'
-// import ShadowSetting from './subpages/shadow'
-// import JiggleSetting from './subpages/jiggle'
-// import ThreeDSetting from './subpages/3d'
+import OutlineSetting from './subpages/outline'
+import ShadowSetting from './subpages/shadow'
+import JiggleSetting from './subpages/jiggle'
+import ThreeDSetting from './subpages/3d'
 import SettingQuality from './subpages/text/components/setting-quality'
 import { h } from 'preact'
 
@@ -245,10 +245,10 @@ function HomePage() {
           <div>
             {setting.subPage === 'text' && <TextSetting />}
             {setting.subPage === 'filling' && <FillingSetting />}
-            {/* {setting.subPage === 'outline' && <OutlineSetting />} */}
-            {/* {setting.subPage === 'shadow' && <ShadowSetting />} */}
-            {/* {setting.subPage === '3d' && <ThreeDSetting />} */}
-            {/* {setting.subPage === 'jiggle' && <JiggleSetting />} */}
+            {setting.subPage === 'outline' && <OutlineSetting />}
+            {setting.subPage === 'shadow' && <ShadowSetting />}
+            {setting.subPage === '3d' && <ThreeDSetting />}
+            {setting.subPage === 'jiggle' && <JiggleSetting />}
           </div>
           <div style={{
             paddingBottom: 16,

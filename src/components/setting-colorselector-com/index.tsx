@@ -42,13 +42,16 @@ const SettingColorselectorCom = ({
         marginBottom: '8px',
         flexGrow: 1,
       }}>{text}</div>
-        <ColorPickerWrapper
+        <div style={{
+          marginRight: '8px'
+        }}><ColorPickerWrapper
           color={colors[0]}
           onChange={handleSingleColorChange}
           index={0}
           placement={placement}
           // placement="bottomRight"
         />
+        </div>
       </div>
     )
   }

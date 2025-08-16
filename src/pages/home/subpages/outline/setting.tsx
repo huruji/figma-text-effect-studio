@@ -2,6 +2,8 @@ import SettingSwitchCom from 'src/components/setting-switch-com'
 import SettingSliderCom from 'src/components/setting-slider-com'
 import SettingColorselectorCom from 'src/components/setting-colorselector-com'
 import SettingGradient, { type Palette } from 'src/components/gradient-setting'
+import { h } from 'preact'
+
 type OutlineSettingType = {
   enable: boolean
   setEnable: (enable: boolean) => void
@@ -37,13 +39,13 @@ const OutlineSetting = ({
 }: OutlineSettingType) => {
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spectrum-global-dimension-size-100)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
       <SettingSwitchCom
         text={'Enable outline'}
         value={enable}
         setValue={setEnable}
       />
-      {enable && <>
+      {enable && <div>
         <SettingSliderCom
           minValue={0}
           maxValue={50}
@@ -52,13 +54,15 @@ const OutlineSetting = ({
           setValue={setValue}
           text={'Outline width'}
         />
-
         {/* <NumberInput max={50} min={0} step={1} value={value} hasSpinButtons onChange={setValue} /> */}
-        <SettingSwitchCom
+        <div style={{
+          marginTop: '8px'
+        }}><SettingSwitchCom
           text={'Use gradient'}
           value={showGradient}
           setValue={setShowGradient}
         />
+        </div>
         {showGradient && <SettingGradient
           direction={direction || 0}
           setDirection={setDirection}
@@ -74,7 +78,7 @@ const OutlineSetting = ({
             setSolidColor(val[0])
           }}
         />}
-      </>}
+      </div>}
     </div>
   )
 }

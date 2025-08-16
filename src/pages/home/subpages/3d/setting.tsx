@@ -2,7 +2,7 @@ import SettingSliderCom from 'src/components/setting-slider-com'
 import SettingSwitchCom from 'src/components/setting-switch-com'
 import SettingColorselectorCom from 'src/components/setting-colorselector-com'
 import SettingGradient, { type Palette } from 'src/components/gradient-setting'
-
+import { h } from 'preact'
 interface SettingProps {
   enable: boolean
   setEnable: (enable: boolean) => void
@@ -45,13 +45,17 @@ const Setting = ({
 }: SettingProps) => {
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spectrum-global-dimension-size-100)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
       <SettingSwitchCom
         text={'Enable depth'}
         value={enable}
         setValue={setEnable}
       />
-      {enable && <>
+      {enable && <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+      }}>
         <SettingSliderCom
           minValue={0}
           maxValue={100}
@@ -62,18 +66,22 @@ const Setting = ({
         />
         {/* <NumberInput max={100} min={0} step={1} value={Math.round(value * 100)} hasSpinButtons onChange={setValue} /> */}
         <SettingSliderCom
-          value={angle}
-          minValue={-180}
-          maxValue={180}
-          setValue={setAngle}
+          value={angle + 180}
+          minValue={0}
+          maxValue={360}
+          setValue={(val) => {
+            setAngle(val - 180)
+          }}
           text={'Angle'}
         />
         <SettingSliderCom
-          value={opacity}
+          value={Math.round(opacity * 100)}
           minValue={0}
-          maxValue={1}
-          step={0.01}
-          setValue={setOpacity}
+          maxValue={100}
+          step={1}
+          setValue={(val) => {
+            setOpacity(val / 100)
+          }}
           text={'Opacity'}
         />
         <SettingSwitchCom
@@ -95,7 +103,7 @@ const Setting = ({
           colors={[solidColor]}
           setColors={setSolidColor}
         />}
-      </>}
+      </div>}
     </div>
   )
 };

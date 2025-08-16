@@ -4,7 +4,7 @@ import { type Palette } from 'src/components/gradient-setting'
 import { hexToRgb, rgbToHex, parseRgba } from '../../../../color-util'
 import { rgbaToHex } from 'src/shared/utils'
 import DepthSetting from './setting'
-
+import { h } from 'preact'
 
 function Depth2Setting() {
   const [setting, setSetting] = useAtom(settingAtom)

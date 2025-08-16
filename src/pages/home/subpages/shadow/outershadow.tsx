@@ -6,6 +6,7 @@ import SettingSwitchCom from 'src/components/setting-switch-com'
 import SettingColorselectorCom from 'src/components/setting-colorselector-com'
 import SettingGradient, { type Palette } from 'src/components/gradient-setting'
 import { rgbaToHex } from 'src/shared/utils'
+import { h } from 'preact'
 
 function OuterShadowSetting() {
   const [setting, setSetting] = useAtom(settingAtom)
@@ -43,7 +44,7 @@ function OuterShadowSetting() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spectrum-global-dimension-size-100)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
       <SettingSwitchCom
         text={'Enable outer shadow'}
         value={outerShadowEnable}
@@ -61,7 +62,11 @@ function OuterShadowSetting() {
           })
         }}
       />
-      {outerShadowEnable && <>
+      {outerShadowEnable && <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+      }}>
         <SettingSliderCom
           text={'Size'}
           minValue={0}
@@ -124,10 +129,10 @@ function OuterShadowSetting() {
         />
         <SettingSliderCom
           minValue={0}
-          maxValue={1}
-          step={0.01}
+          maxValue={100}
+          step={1}
           text={'Opacity'}
-          value={setting?.currentConfig?.shadow?.outer?.fill?.alpha}
+          value={Math.round(setting?.currentConfig?.shadow?.outer?.fill?.alpha * 100)}
           setValue={(val) => {
             setSetting((s) => {
               const currentConfig = { ...s.currentConfig }
@@ -140,17 +145,17 @@ function OuterShadowSetting() {
               if (!currentConfig.shadow.outer.fill) {
                 currentConfig.shadow.outer.fill = {}
               }
-              currentConfig.shadow.outer.fill.alpha = val
+              currentConfig.shadow.outer.fill.alpha = val / 100
               return { ...s, currentConfig }
             })
           }}
         />
         <SettingSliderCom
-          minValue={-180}
-          maxValue={180}
+          minValue={0}
+          maxValue={360}
           step={1}
           text={'Direction'}
-          value={setting?.currentConfig?.shadow?.outer?.angle}
+          value={setting?.currentConfig?.shadow?.outer?.angle + 180}
           setValue={(val) => {
             setSetting((s) => {
               const currentConfig = { ...s.currentConfig }
@@ -160,7 +165,7 @@ function OuterShadowSetting() {
               if (!currentConfig.shadow.outer) {
                 currentConfig.shadow.outer = {}
               }
-              currentConfig.shadow.outer.angle = val
+              currentConfig.shadow.outer.angle = val - 180
               return { ...s, currentConfig }
             })
           }}
@@ -265,7 +270,7 @@ function OuterShadowSetting() {
             }}
           />
         }
-      </>}
+      </div>}
     </div>
   )
 };

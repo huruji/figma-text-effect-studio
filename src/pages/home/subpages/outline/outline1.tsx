@@ -4,6 +4,7 @@ import { type Palette } from 'src/components/gradient-setting'
 import { hexToRgb, rgbToHex } from '../../../../color-util'
 import Setting from './setting'
 import { rgbaToHex } from 'src/shared/utils'
+import { h } from 'preact'
 
 
 function OutlineSetting() {

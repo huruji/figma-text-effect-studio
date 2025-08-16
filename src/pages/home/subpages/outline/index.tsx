@@ -1,9 +1,10 @@
-import { Item, TabList, TabPanels, Tabs, } from '@adobe/react-spectrum'
+import { Tabs, TabsOption } from '@create-figma-plugin/ui'
 import { useSetState } from 'ahooks'
 import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
 import Outline1 from './outline1'
 import Outline2 from './outline2'
+import { h } from 'preact'
 
 function OutlineSetting() {
   const [setting, setSetting] = useAtom(settingAtom)
@@ -12,38 +13,27 @@ function OutlineSetting() {
     activeTabKey: 'outline1',
   })
 
-  let tabs = [
+  const options: Array<TabsOption> =  [
     {
-      id: 1,
-      name: 'Outline one',
+      value: 'outline1',
       children: <Outline1 />
     },
     {
-      id: 2,
-      name: 'Outline one',
+      value: 'outline2',
       children: <Outline2 />
     },
   ]
 
   return <Tabs
-    items={tabs}
-    density="regular"
-    isEmphasized={true}
+    options={options}
+    value={state.activeTabKey}
+    onChange={(event) => {
+      const newValue = event.currentTarget.value;
+      setState({
+        activeTabKey: newValue,
+      })
+    }}
   >
-    <TabList>
-      {(item: typeof tabs[0]) => (
-        <Item>
-          {item.name}
-        </Item>
-      )}
-    </TabList>
-    <TabPanels>
-      {(item: typeof tabs[0]) => (
-        <Item>
-          {item.children}
-        </Item>
-      )}
-    </TabPanels>
   </Tabs>
 };
 

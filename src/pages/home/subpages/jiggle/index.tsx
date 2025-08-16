@@ -3,6 +3,7 @@ import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
 import SettingSliderCom from 'src/components/setting-slider-com'
 import SettingSwitchCom from 'src/components/setting-switch-com'
+import { h } from 'preact'
 
 
 function TextTab() {
@@ -13,7 +14,7 @@ function TextTab() {
   const showJiggleSetting = Boolean(setting?.currentConfig.lettering?.boggle?.active)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spectrum-global-dimension-size-100)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', }}>
       <SettingSwitchCom
         text={'Enable jiggle'}
         value={showJiggleSetting}
@@ -42,7 +43,11 @@ function TextTab() {
         }}
       />
       {showJiggleSetting && (
-        <>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8px',
+        }}>
           <SettingSliderCom
             text={'Angle'}
             minValue={0}
@@ -88,7 +93,7 @@ function TextTab() {
               })
             }}
           />
-        </>
+        </div>
       )}
     </div>
   )

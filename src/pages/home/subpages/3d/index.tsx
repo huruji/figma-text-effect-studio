@@ -1,41 +1,37 @@
 
-import { Item, TabList, TabPanels, Tabs, } from '@adobe/react-spectrum'
+import { Tabs, TabsOption } from '@create-figma-plugin/ui'
+import { useSetState } from 'ahooks'
 import Depth1 from './depth1'
 import Depth2 from './depth2'
+import { h } from 'preact'
 
 function ThreeDepthSetting() {
-  let tabs = [
+  const [state, setState] = useSetState({
+    isLoading: false,
+    activeTabKey: 'depth1',
+  })
+
+  const options: Array<TabsOption> = [
     {
-      id: 1,
-      name: 'Depth one',
+      value: 'depth1',
       children: <Depth1 />
     },
     {
-      id: 2,
-      name: 'Depth two',
+      value: 'depth2',
       children: <Depth2 />
     },
   ]
 
   return <Tabs
-    items={tabs}
-    density="regular"
-    isEmphasized={true}
+    options={options}
+    value={state.activeTabKey}
+    onChange={(event) => {
+      const newValue = event.currentTarget.value;
+      setState({
+        activeTabKey: newValue,
+      })
+    }}
   >
-    <TabList>
-      {(item: typeof tabs[0]) => (
-        <Item>
-          {item.name}
-        </Item>
-      )}
-    </TabList>
-    <TabPanels>
-      {(item: typeof tabs[0]) => (
-        <Item>
-          {item.children}
-        </Item>
-      )}
-    </TabPanels>
   </Tabs>
 };
 

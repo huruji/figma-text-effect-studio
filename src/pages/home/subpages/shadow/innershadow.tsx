@@ -5,6 +5,7 @@ import SettingSliderCom from 'src/components/setting-slider-com'
 import SettingSwitchCom from 'src/components/setting-switch-com'
 import SettingColorselectorCom from 'src/components/setting-colorselector-com'
 import SettingGradient, { type Palette } from 'src/components/gradient-setting'
+import { h } from 'preact'
 
 function InnerShadowSetting() {
   const [setting, setSetting] = useAtom(settingAtom)
@@ -40,7 +41,7 @@ function InnerShadowSetting() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spectrum-global-dimension-size-100)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
       <SettingSwitchCom
         text={'Enable inner shadow'}
         value={innerShadowEnable}
@@ -58,7 +59,11 @@ function InnerShadowSetting() {
           })
         }}
       />
-      {innerShadowEnable && <>
+      {innerShadowEnable && <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+      }}>
         <SettingSliderCom
           text={'Size'}
           minValue={0}
@@ -136,7 +141,7 @@ function InnerShadowSetting() {
             })
           }}
         />
-      </>}
+      </div>}
     </div>
   )
 };
