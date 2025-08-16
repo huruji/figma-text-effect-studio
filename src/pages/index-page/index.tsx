@@ -7,9 +7,11 @@ import { h } from 'preact'
 import { useSetState } from 'ahooks'
 import InfiniteScroll from 'react-infinite-scroller'
 import { getEffectData } from 'src/services/index'
-import './index.css'
+import '!./index.css'
 import useSlug from './use-slug'
-// import Slider from "react-slick"
+import Slider from "react-slick"
+import '!slick-carousel/slick/slick.css'
+import "!slick-carousel/slick/slick-theme.css";
 import {
   Button,
   Columns,
@@ -156,10 +158,10 @@ const IndexPage = () => {
               setSetting((s: any) => ({ ...s, searchValue: newValue }))
             }}
             value={setting.searchValue}
-            placeholder="搜索文字效果..."
+            placeholder="Search text effect..."
           />
         </div>
-        {/* {slugs?.length > 0 && (
+        {slugs?.length > 0 && (
           <div style={{
             paddingBottom: 'var(--spectrum-global-dimension-size-100)',
           }}>
@@ -186,7 +188,7 @@ const IndexPage = () => {
               </Slider>
             </div>
           </div>
-        )} */}
+        )}
       </div>
       {state.pageLoading && <div style={{ paddingTop: `var(--spectrum-global-dimension-size-200)`, display: 'flex', justifyContent: 'center' }}>
         <LoadingIndicator color="brand"/>

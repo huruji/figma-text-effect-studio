@@ -1,0 +1,10 @@
+.settingFontButtonContainer {
+  display: flex;
+}
+.settingFontButtonContainer button {
+  position: relative;
+}
+.settingFontButtonContainer button span:last-child {
+  position: absolute;
+  right: 8px;
+}

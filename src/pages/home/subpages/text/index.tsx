@@ -5,7 +5,7 @@ import { useAtom } from 'jotai'
 import { settingAtom } from 'src/atoms/setting'
 import SettingTextLine from './components/setting-text-line'
 import SettingAlign from './components/setting-align'
-// import SettingFont from 'src/components/setting-font'
+import SettingFont from 'src/components/setting-font'
 import StyleSetting from './components/style-setting'
 // import EffectSetting from './components/effect-setting'
 
@@ -35,7 +35,7 @@ function TextTab() {
           }}
         />
       </div>
-      {/* <SettingFont
+      <SettingFont
         text={'Font'}
         value={setting.currentConfig?.font.name || 'Thunder Regular'}
         setValue={(val) => {
@@ -46,7 +46,7 @@ function TextTab() {
             }
           })
         }}
-      /> */}
+      />
       <SettingAlign />
       <SettingTextLine />
       <StyleSetting />

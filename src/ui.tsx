@@ -20,6 +20,7 @@ import styles from "./App.css"
 import IndexPage from './pages/index-page/index'
 import PremiumPage from './pages/premium'
 import HomePage from './pages/home'
+import FontSettingPage from './pages/font-setting'
 import { useGetUserInfo } from './use-get-userinfo'
 
 import { CloseHandler, CreateRectanglesHandler } from './types'
@@ -146,7 +147,7 @@ function Plugin() {
       <IndexPage />
       {/* <GlobalMessage /> */}
       <HomePage />
-      {/* <FontSettingPage /> */}
+      <FontSettingPage />
       <PremiumPage />
     </div>
   )
