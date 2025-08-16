@@ -4,12 +4,12 @@ import { useAtom } from 'jotai'
 import useSlug from './use-font-slug'
 import Back from 'src/components/back'
 import { getCacheData, setCacheData } from 'src/util'
-import { Text, SearchTextbox, Button } from '@create-figma-plugin/ui'
+import { Text, SearchTextbox } from '@create-figma-plugin/ui'
 import { useSetState } from 'ahooks'
 import InfiniteScroll from 'react-infinite-scroller'
 import { loadFonts } from 'src/util'
 import '!./index.css'
-import Slider from "react-slick"
+import HorizontalButtonSlider from 'src/components/horizontal-button-slider'
 import { h } from 'preact'
 
 
@@ -67,7 +67,7 @@ const FontSettingPage = () => {
         if (item.category?.toLowerCase() === state.selectedSlug.toLowerCase()) {
           return true
         }
-        includes = (item.subsets.map((subset) => subset.toLowerCase())).filter((subset) => subset.includes(state.selectedSlug.toLowerCase())).length > 0
+        includes = (item.subsets?.map((subset) => subset.toLowerCase()))?.filter((subset) => subset?.includes(state.selectedSlug.toLowerCase())).length > 0
         return includes
       })
     }
@@ -96,7 +96,7 @@ const FontSettingPage = () => {
       display: 'none'
     } : {}}>
       <div>
-        <div style={{ backgroundColor: 'var(--spectrum-global-color-static-white)', position: 'sticky', top: 0, zIndex: 1, }}>
+        <div style={{ backgroundColor: 'var(--figma-color-bg)', position: 'sticky', top: 0, zIndex: 1, }}>
           <Back onCancel={onCancel} title={'Fonts'} />
           <div>
             <div style={{
@@ -131,46 +131,23 @@ const FontSettingPage = () => {
               /> */}
             </div>
 
-            {/* {slugs?.length > 0 && (
-          <div style={{
-            paddingBottom: 'var(--spectrum-global-dimension-size-100)',
-          }}>
-            <div className='slider-container'>
-              <Slider slidesToShow={'auto'} {
-                ...{
-                  dots: false,
-                  infinite: false,
-                  speed: 300,
-                  slidesToShow: 2,
-                  slidesToScroll: 2
-                }
-              }>{slugs.map((item) => {
-                const type = state.selectedSlug === item.key ? 'accent' : 'secondary'
-                return <div>
-                  <Button key={item.key} variant={type} onPress={() => {
-                    if (state.selectedSlug === item.key) {
-                      setState((s) => {
-                        return {
-                          ...s,
-                          selectedSlug: '',
-                        }
-                      })
-                      return
-                    }
-                    setState((s) => {
-                      return {
-                        ...s,
-                        selectedSlug: item.key,
-                      }
-                    })
-                  }}>{item.label}</Button>
-                </div>
-              })}
-              </Slider>
-            </div>
-          </div>
-        )}
-             */}
+            {slugs?.length > 0 && (
+              <div style={{
+                paddingBottom: 'var(--spectrum-global-dimension-size-100)',
+              }}>
+                <HorizontalButtonSlider
+                  items={slugs}
+                  selectedValue={state.selectedSlug}
+                  onItemSelect={(key) => {
+                    console.log('key:', key)
+                    setState((s) => ({
+                      ...s,
+                      selectedSlug: s.selectedSlug === key ? '' : key,
+                    }))
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
         <div style={{

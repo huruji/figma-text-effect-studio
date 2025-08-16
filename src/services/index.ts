@@ -8,12 +8,12 @@ declare global {
   }
 }
 
-// const BASE_URL = "https://adobe.imagination-soft.com/api"
+const BASE_URL = "https://figma.imagination-soft.com/api"
 // todo 注释掉上线前
 window.GlobalBaseUrl = "http://localhost:4000/api"
 
 // 获取基础URL的辅助函数
-const getBaseUrl = () => window.GlobalBaseUrl || "https://adobe.imagination-soft.com/api"
+const getBaseUrl = () => window.GlobalBaseUrl || "https://figma.imagination-soft.com/api"
 
 // 获取默认请求配置的辅助函数
 const getDefaultConfig = (): AxiosRequestConfig => {
