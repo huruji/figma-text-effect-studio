@@ -112,7 +112,7 @@ const IndexPage = () => {
         {stylesConfig.map((item, index) => {
           return <div key={item.subPage} style={{
             cursor: 'pointer',
-            width: 'calc((100% - 16px) / 3)',
+            width: 'calc((100% - 32px) / 5)',
           }}
             onClick={() => {
               setSetting((s) => {
@@ -133,7 +133,7 @@ const IndexPage = () => {
               />
             </div>
             <div style={{ textAlign: 'center' }}><div style={{
-              fontSize: '12px',
+              fontSize: '10px',
               color: 'var(--figma-color-text-secondary)',
               marginBottom: '8px'
             }}>{item.style}</div></div>
