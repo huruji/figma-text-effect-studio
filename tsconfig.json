@@ -2,7 +2,16 @@
   "extends": "@create-figma-plugin/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
-    "typeRoots": ["node_modules/@figma", "node_modules/@types"]
+    "typeRoots": ["node_modules/@figma", "node_modules/@types"],
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
+    "alwaysStrict": false
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

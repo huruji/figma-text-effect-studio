@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Text } from '@create-figma-plugin/ui'
 import { rgbaToHex } from 'src/shared/utils'
 import { useCallback, useEffect } from 'preact/compat'

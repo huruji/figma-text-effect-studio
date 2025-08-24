@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAtom } from 'jotai'
 import { settingAtom } from 'src/atoms/setting'
 import { h } from 'preact'

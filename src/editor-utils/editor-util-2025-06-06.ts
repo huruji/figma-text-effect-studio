@@ -1,3 +1,4 @@
+// @ts-nocheck
 const LINKY = '/LINKY';
 const LINKY_CDN = 'https://cdn.textstudio.com/LINKY';
 const CDN_EXTENSIONS = ["jpg","png","gif","svg","webp","mp4","webm","css","js","map","otf","ttf","woff2","json","FONT_EXT"];

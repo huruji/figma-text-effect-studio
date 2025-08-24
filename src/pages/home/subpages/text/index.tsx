@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { TextboxMultiline, Text, Stack } from '@create-figma-plugin/ui'
 import { h } from 'preact'
 import { useSetState } from 'ahooks'

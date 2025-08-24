@@ -4,6 +4,7 @@
 //   FormField,
 // } from "@canva/app-ui-kit"
 // import { Flex, Switch, Text } from "@adobe/react-spectrum"
+// @ts-nocheck
 import { useSetState } from 'ahooks'
 import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'

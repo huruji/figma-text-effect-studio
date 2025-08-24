@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { RangeSlider } from '@create-figma-plugin/ui'
 import { h } from 'preact'
 

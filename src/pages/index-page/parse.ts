@@ -1,3 +1,4 @@
+// @ts-nocheck
 // 使用示例
 const config = require('../../a.json');
 

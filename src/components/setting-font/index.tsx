@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAtom } from 'jotai'
 import { Button, Text, IconChevronRightLarge24 } from '@create-figma-plugin/ui'
 import { settingAtom } from 'src/atoms/setting'

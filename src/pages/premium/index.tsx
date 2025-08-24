@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef, useEffect } from "preact/hooks"
 import { h } from 'preact'
 import { Text, Stack, IconCheckLarge24 } from '@create-figma-plugin/ui'

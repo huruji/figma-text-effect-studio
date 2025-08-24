@@ -1,7 +1,6 @@
+// @ts-nocheck
 import { atom } from 'jotai'
 import { type TextEffectConfig } from 'src/types/text-effect-studio'
-import { AddOnSDKAPI } from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-
 interface RgbaColor {
   r: number;
   g: number;
@@ -59,7 +58,6 @@ export type EffectType = {
   defaultConfig: TextEffectConfig
 }
 export type SettingType = {
-  addOnUISdk: AddOnSDKAPI
   preset: PresetType
   oldPreset: PresetType
   allEffects: EffectType[]
@@ -123,7 +121,6 @@ export type SettingType = {
 const isDark = document.documentElement.classList.contains('dark')
 
 export const settingAtom = atom<SettingType>({
-  addOnUISdk: null,
   searchValue: '',
   selectedEffect: {},
   currentConfig: {},

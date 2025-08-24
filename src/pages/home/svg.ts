@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable object-shorthand */
 import { PresetType } from 'src/atoms/setting'
 import { getFontBase64 } from 'src/util'

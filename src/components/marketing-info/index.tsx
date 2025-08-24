@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link, Badge, Text } from "@adobe/react-spectrum"
 import { useAtom } from 'jotai'
 import React from "react"

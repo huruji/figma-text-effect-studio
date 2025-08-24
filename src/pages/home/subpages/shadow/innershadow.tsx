@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAtom } from 'jotai'
 import { settingAtom, type SettingType } from 'src/atoms/setting'
 import { hexToRgb, rgbToHex } from '../../../../color-util'

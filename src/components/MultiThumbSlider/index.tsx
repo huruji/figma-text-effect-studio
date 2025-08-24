@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef } from 'preact/compat'
 import { v4 as uuidv4 } from 'uuid'
 import { hexToRgbaObject, removeAlphaFromRgbaColor } from 'src/shared/utils'

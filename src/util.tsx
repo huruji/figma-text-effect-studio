@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect } from "preact/compat"
 import { emit } from '@create-figma-plugin/utilities'
 

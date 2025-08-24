@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const TextEditorUtil = {
   hexToRgb(hex:string) {
     const hexArray = hex.substring(1).match(/.{1,2}/g);

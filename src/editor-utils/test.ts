@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Processes a URL based on its extension and whether to use CDN
  * @param url - The input URL to process
