@@ -3,11 +3,24 @@
   "editorType": [
     "figma"
   ],
-  "id": "text-effect-studio",
+  "id": "1538619926518333210",
   "name": "Text Effect Studio",
   "main": "build/main.js",
   "ui": "build/ui.js",
   "permissions": [
     "currentuser"
-  ]
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "figma.imagination-soft.com",
+      "adobe.imagination-soft.com",
+      "*.imagination-soft.com",
+      "cb108d517846d51dd198db2e85adc235.r2.cloudflarestorage.com",
+      "pub-b800a41f46484915a9433b0bb7a4f019.r2.dev",
+      "pub-ffe8fc8dd816416b85b3dd59217c3fbb.r2.dev",
+      "pub-2334e9788b954f3d85e1d32aa17ceb65.r2.dev",
+      "pub-000f256fe5e44259950db987704925e1.r2.dev",
+      "pub-c7f5385e1f7e4aa4a29d3e5a5ebbf867.r2.dev",
+      "*.r2.dev"
+  ] }
 }
