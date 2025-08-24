@@ -249,9 +249,9 @@ const IndexPage = () => {
                       </div>
                     </div>}
                   </div>
-                  <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'var(--spectrum-global-dimension-size-100)' }}>
+                  {/* <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'var(--spectrum-global-dimension-size-100)' }}>
                     <Text>{item.origin_id}</Text>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

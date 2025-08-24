@@ -98,6 +98,19 @@ function PremiumPage() {
                     <div className="text-secondary">Over 2000 fonts</div>
                   </div>
                 </div>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <IconCheckLarge24 color="brand" />
+                  <div style={{
+                    paddingLeft: '4px',
+                    display: 'inline-block'
+                  }}>
+                    <div className="text-secondary">Higher quality export</div>
+                  </div>
+                </div>
               </div>
               <div>
                 <Payment />
